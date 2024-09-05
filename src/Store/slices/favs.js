@@ -5,8 +5,6 @@ const favSlice = createSlice({
   initialState: { favArr: [] },
   reducers: {
     addFav: (state, action) => {
-      console.log(action);
-
       let flag = false;
       state.favArr.map((fav) => {
         if (fav.id == action.payload.id) {

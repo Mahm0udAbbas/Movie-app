@@ -9,41 +9,49 @@ function Fav() {
   const { removeFromFav } = useFavoriteActions();
   return (
     <>
-      <Container>
-        <Row xs={1} md={3} lg={3} className="g-4 ">
-          {favArr.map((fav) => {
-            return (
-              <Col key={fav.id}>
-                <Card>
-                  <Card.Img
-                    variant="top"
-                    src={`https://image.tmdb.org/t/p/w500/${fav.backdrop_path}`}
-                  />
-                  <Card.Body className="movie-card">
-                    <Card.Title>{fav.title}</Card.Title>
-                    <Card.Text>{fav.overview}</Card.Text>
-                  </Card.Body>
-                  <Card.Footer className="d-flex justify-content-between bg-white ">
-                    <FontAwesomeIcon
-                      icon={faHeartCircleCheck}
-                      className="text-danger"
-                      style={{ cursor: "pointer" }}
+      {favArr.length === 0 ? (
+        <div className="d-flex align-items-center justify-content-center h-100">
+          <h1 className="text-primary">
+            You Do not have Favourites Movies Yet!
+          </h1>
+        </div>
+      ) : (
+        <Container>
+          <Row xs={1} md={3} lg={3} className="g-4 ">
+            {favArr.map((fav) => {
+              return (
+                <Col key={fav.id}>
+                  <Card>
+                    <Card.Img
+                      variant="top"
+                      src={`https://image.tmdb.org/t/p/w500/${fav.backdrop_path}`}
                     />
-                    <FontAwesomeIcon
-                      onClick={() => {
-                        removeFromFav(fav.id);
-                      }}
-                      icon={faTrash}
-                      className="text-danger"
-                      style={{ cursor: "pointer" }}
-                    />
-                  </Card.Footer>
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
+                    <Card.Body className="movie-card">
+                      <Card.Title>{fav.title}</Card.Title>
+                      <Card.Text>{fav.overview}</Card.Text>
+                    </Card.Body>
+                    <Card.Footer className="d-flex justify-content-between bg-white ">
+                      <FontAwesomeIcon
+                        icon={faHeartCircleCheck}
+                        className="text-danger"
+                        style={{ cursor: "pointer" }}
+                      />
+                      <FontAwesomeIcon
+                        onClick={() => {
+                          removeFromFav(fav.id);
+                        }}
+                        icon={faTrash}
+                        className="text-danger"
+                        style={{ cursor: "pointer" }}
+                      />
+                    </Card.Footer>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
+        </Container>
+      )}
     </>
   );
 }

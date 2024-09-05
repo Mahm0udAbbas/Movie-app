@@ -9,10 +9,18 @@ export const moviesAction = createAsyncThunk("movies/getAll", async (page) => {
 const moviesSlice = createSlice({
   name: "movies",
   initialState: { movies: [] },
+  reducers: {
+    // Reducer to set a specific movie
+    setMovies: (state, action) => {
+      state.movies = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(moviesAction.fulfilled, (state, action) => {
       state.movies = action.payload;
     });
   },
 });
+
+export const { setMovies } = moviesSlice.actions;
 export default moviesSlice.reducer;
