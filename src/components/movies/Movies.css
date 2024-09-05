@@ -1,0 +1,4 @@
+.movie-card {
+  height: 350px !important;
+  overflow-y: hidden;
+}
